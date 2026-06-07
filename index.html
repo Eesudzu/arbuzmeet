@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🍉 От Фатимы</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#c01515}
+body{font-family:'Nunito',sans-serif;color:#fff}
+
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh}
+.tab-content{flex:1;overflow:hidden;position:relative}
+.tab-pane{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:none;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-pane::-webkit-scrollbar{display:none}
+.tab-pane.active{display:block}
+
+.navbar{display:flex;background:#900d0d;border-top:1px solid rgba(255,255,255,0.1);flex-shrink:0;padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav-btn{flex:1;padding:10px 0 8px;border:none;background:transparent;color:rgba(255,255,255,0.5);font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all 0.2s;letter-spacing:0.03em}
+.nav-btn.active{color:#fff;background:rgba(255,255,255,0.1)}
+.nav-icon{font-size:20px;line-height:1}
+
+/* ===== WATERMELON BG ===== */
+.wm-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.seed-svg{position:absolute;opacity:0;animation:seedDrift linear infinite}
+@keyframes seedDrift{
+  0%{opacity:0;transform:translateY(0) rotate(0deg) scale(0.8)}
+  5%{opacity:0.22}
+  90%{opacity:0.18}
+  100%{opacity:0;transform:translateY(-105vh) rotate(200deg) scale(1.1)}
+}
+
+/* ===== HOME PAGE ===== */
+.page-home{min-height:100%;position:relative;z-index:1}
+
+/* envelope */
+.env-section{padding:28px 20px 0;cursor:pointer;user-select:none}
+.envelope-3d{background:linear-gradient(160deg,#b80e0e 0%,#8b0000 100%);border-radius:20px;padding:28px 20px 24px;text-align:center;border:1px solid rgba(255,255,255,0.15);box-shadow:0 12px 40px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.1);position:relative;overflow:hidden;transition:transform 0.3s,opacity 0.4s}
+.envelope-3d.opened{transform:scaleY(0.001);opacity:0;pointer-events:none;height:0;min-height:0;padding:0;margin:0}
+.env-fold{position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(135deg,#a00808,#7a0000);clip-path:polygon(0 0,100% 0,50% 100%);opacity:0.6}
+.env-wm{font-size:4rem;display:block;animation:wmBounce 2s ease-in-out infinite;position:relative;z-index:1}
+@keyframes wmBounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+.env-title{font-family:'Pacifico',cursive;font-size:1.45rem;color:#fff;margin:8px 0 4px;position:relative;z-index:1}
+.env-sub{font-size:0.78rem;color:rgba(255,255,255,0.65);position:relative;z-index:1}
+.env-tap{margin-top:16px;font-size:0.76rem;color:rgba(255,255,255,0.5);animation:tapPulse 1.6s ease-in-out infinite;position:relative;z-index:1}
+@keyframes tapPulse{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:0.9;transform:scale(1.04)}}
+
+/* card */
+.invite-card{background:rgba(255,255,255,0.97);color:#1a1a1a;border-radius:24px;margin:16px;padding:26px 20px 22px;box-shadow:0 20px 60px rgba(0,0,0,0.35);animation:cardReveal 0.55s cubic-bezier(0.16,1,0.3,1) both}
+@keyframes cardReveal{from{opacity:0;transform:translateY(36px) scale(0.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+.card-wm{font-size:3.8rem;text-align:center;display:block;margin-bottom:6px;animation:wmBounce 2.5s ease-in-out infinite}
+.card-h1{font-family:'Pacifico',cursive;font-size:1.45rem;color:#c01515;text-align:center;line-height:1.3;margin-bottom:4px}
+.card-sub{text-align:center;font-size:0.78rem;color:#999;letter-spacing:0.05em;margin-bottom:18px}
+.from-badge{display:inline-flex;align-items:center;gap:6px;background:#fff0f0;border:1.5px solid rgba(192,21,21,0.2);border-radius:50px;padding:5px 14px;font-size:0.8rem;font-weight:800;color:#c01515;margin-bottom:14px}
+.card-text{font-size:0.92rem;color:#333;line-height:1.7;margin-bottom:16px;text-align:center}
+.card-text strong{color:#c01515;font-weight:800}
+.details-box{background:#fff5f5;border-radius:16px;border:1.5px dashed rgba(192,21,21,0.25);padding:12px 14px;margin-bottom:14px}
+.drow{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:0.87rem;color:#3a3a3a;border-bottom:1px dashed rgba(192,21,21,0.1)}
+.drow:last-child{border-bottom:none}
+.drow .di{font-size:1.05rem;flex-shrink:0}
+.drow b{color:#c01515}
+.dresscode{background:linear-gradient(135deg,#c01515 0%,#1a1a1a 100%);border-radius:14px;padding:12px 14px;text-align:center;margin-bottom:14px}
+.dc-title{font-size:0.68rem;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:8px}
+.dc-row{display:flex;align-items:center;justify-content:center;gap:10px}
+.dc-dot{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,0.25)}
+.dc-dot.red{background:#c01515;border-color:rgba(255,255,255,0.4)}
+.dc-dot.black{background:#1a1a1a}
+.dc-dot.white{background:#fff}
+.dc-lbl{font-size:0.73rem;color:rgba(255,255,255,0.75);font-weight:700}
+.rsvp-btn{width:100%;background:linear-gradient(135deg,#c01515,#8b0000);color:#fff;border:none;border-radius:50px;padding:14px;font-size:1rem;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 6px 24px rgba(192,21,21,0.45);transition:transform 0.15s,box-shadow 0.15s}
+.rsvp-btn:active{transform:scale(0.97)}
+.rsvp-btn.done{background:linear-gradient(135deg,#16a34a,#14532d);box-shadow:0 6px 24px rgba(22,163,74,0.4)}
+
+/* ===== DATE PAGE ===== */
+.page-date{min-height:100%;position:relative;z-index:1;padding:28px 16px 30px}
+.cd-card{background:rgba(255,255,255,0.97);border-radius:24px;padding:26px 20px 22px;color:#1a1a1a;box-shadow:0 16px 50px rgba(0,0,0,0.3)}
+.cd-title{font-family:'Pacifico',cursive;font-size:1.3rem;color:#c01515;text-align:center;line-height:1.4;margin-bottom:22px}
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+.cd-box{background:#fff5f5;border-radius:14px;padding:14px 4px 10px;border:1.5px solid rgba(192,21,21,0.12);text-align:center}
+.cd-num{font-size:1.9rem;font-weight:900;color:#c01515;display:block;line-height:1;font-variant-numeric:tabular-nums}
+.cd-lbl{font-size:0.62rem;font-weight:800;color:rgba(192,21,21,0.55);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-top:5px}
+.cd-pill{background:#fff5f5;border:1.5px solid rgba(192,21,21,0.2);border-radius:50px;padding:10px 20px;font-size:0.88rem;font-weight:700;color:#c01515;text-align:center;margin-bottom:16px}
+.cd-hearts{text-align:center;font-size:1.4rem;opacity:0.4;letter-spacing:4px}
+
+/* ===== MUSIC PAGE ===== */
+.page-music{min-height:100%;position:relative;z-index:1;padding:26px 16px 30px;display:flex;flex-direction:column;align-items:center}
+.music-header{text-align:center;margin-bottom:22px}
+.music-header p{font-size:0.72rem;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:5px}
+.music-header h2{font-family:'Pacifico',cursive;font-size:1.4rem;color:#fff}
+.vinyl-area{position:relative;width:210px;height:210px;margin:0 auto 22px;cursor:pointer}
+.vinyl{width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,#3d3d3d 0%,#1c1c1c 28%,#0e0e0e 70%,#1c1c1c 100%);position:relative;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
+.vinyl.spin{animation:vSpin 2s linear infinite}
+@keyframes vSpin{to{transform:rotate(360deg)}}
+.vgroove{position:absolute;inset:0;border-radius:50%;overflow:hidden}
+.vg{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,0.035)}
+.vcenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,#d42020,#900d0d);display:flex;align-items:center;justify-content:center;font-size:1.7rem;border:3px solid rgba(255,255,255,0.15);box-shadow:0 0 18px rgba(192,21,21,0.7)}
+.pfab{position:absolute;bottom:-8px;right:-8px;width:52px;height:52px;border-radius:50%;background:#c01515;border:none;color:#fff;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,0.45);transition:transform 0.1s;flex-shrink:0}
+.pfab:active{transform:scale(0.9)}
+.song-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:18px;padding:14px 18px;width:100%;text-align:center;margin-bottom:14px}
+.song-title{font-size:1.05rem;font-weight:900;color:#fff;margin-bottom:3px}
+.song-art{font-size:0.82rem;color:rgba(255,255,255,0.65)}
+.eq{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:22px;margin-top:10px}
+.eq-b{width:4px;background:rgba(255,255,255,0.55);border-radius:2px;animation:eqA 0.65s ease-in-out infinite}
+.eq-b:nth-child(1){height:8px;animation-delay:0s}
+.eq-b:nth-child(2){height:15px;animation-delay:.1s}
+.eq-b:nth-child(3){height:10px;animation-delay:.15s}
+.eq-b:nth-child(4){height:20px;animation-delay:.05s}
+.eq-b:nth-child(5){height:13px;animation-delay:.2s}
+.eq-b:nth-child(6){height:7px;animation-delay:.1s}
+.eq-b:nth-child(7){height:17px;animation-delay:.25s}
+@keyframes eqA{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}
+.eq.off .eq-b{animation-play-state:paused;transform:scaleY(0.35)}
+.music-msg{text-align:center;color:rgba(255,255,255,0.7);font-size:0.83rem;line-height:1.6;margin-bottom:14px}
+.yt-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:50px;padding:10px 20px;color:#fff;font-size:0.83rem;font-weight:800;text-decoration:none;font-family:'Nunito',sans-serif;transition:background 0.2s}
+.yt-btn:active{background:rgba(255,255,255,0.2)}
+
+/* CONFETTI */
+.cfw{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden}
+.cfc{position:absolute;top:-12px;animation:cfDrop linear forwards}
+@keyframes cfDrop{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(110vh) rotate(720deg)}}
+</style>
+</head>
+<body>
+
+<!-- WATERMELON SEED BACKGROUND -->
+<div class="wm-bg" id="wmBg"></div>
+<div class="cfw" id="cfw"></div>
+
+<div class="app">
+  <div class="tab-content">
+
+    <!-- HOME -->
+    <div class="tab-pane active" id="pageHome">
+      <div class="page-home">
+
+        <div class="env-section" id="envSection" onclick="openEnv()">
+          <div class="envelope-3d" id="env3d">
+            <div class="env-fold"></div>
+            <span class="env-wm">🍉</span>
+            <div class="env-title">Для тебя, от Фатимы</div>
+            <div class="env-sub">что-то особенное внутри...</div>
+            <div class="env-tap">👆 нажми чтобы открыть</div>
+          </div>
+        </div>
+
+        <div id="theCard" style="display:none">
+          <div class="invite-card">
+            <span class="card-wm">🍉</span>
+            <h1 class="card-h1">Арбузное свидание!</h1>
+            <p class="card-sub">✨ зовёт тебя Фатима ✨</p>
+            <div style="text-align:center;margin-bottom:14px">
+              <span class="from-badge">💌 от Фатимы — лично тебе</span>
+            </div>
+            <p class="card-text">
+              Привет! 🌿<br><br>
+              Хочу пригласить тебя на <strong>арбузное свидание</strong> — разрежем самый спелый арбуз, запачкаем руки в соке и будем сидеть в тени под деревьями ☀️<br><br>
+              Буду рада видеть тебя 🍉
+            </p>
+            <div class="details-box">
+              <div class="drow"><span class="di">📅</span><span><b>11 июня, среда</b></span></div>
+              <div class="drow"><span class="di">🕐</span><span><b>13:00</b></span></div>
+              <div class="drow"><span class="di">🌳</span><span><b>Уютный парк</b></span></div>
+              <div class="drow"><span class="di">🍉</span><span>Арбуз беру я</span></div>
+              <div class="drow"><span class="di">😊</span><span>Нужен только ты</span></div>
+            </div>
+            <div class="dresscode">
+              <div class="dc-title">Дресс-код</div>
+              <div class="dc-row">
+                <div class="dc-dot red"></div><span class="dc-lbl">Красный</span>
+                <div class="dc-dot white"></div><span class="dc-lbl">Белый</span>
+                <div class="dc-dot black"></div><span class="dc-lbl">Чёрный</span>
+              </div>
+            </div>
+            <button class="rsvp-btn" id="rsvpBtn" onclick="doRsvp()">Приду! 🍉</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DATE -->
+    <div class="tab-pane" id="pageDate">
+      <div class="page-date">
+        <div class="cd-card">
+          <div class="cd-title">До арбузного свидания<br>осталось 🍉</div>
+          <div class="cd-grid">
+            <div class="cd-box"><span class="cd-num" id="cdD">--</span><span class="cd-lbl">Дней</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdH">--</span><span class="cd-lbl">Часов</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdM">--</span><span class="cd-lbl">Минут</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdS">--</span><span class="cd-lbl">Секунд</span></div>
+          </div>
+          <div class="cd-pill">📅 11 июня, 13:00 · Уютный парк</div>
+          <div class="cd-hearts">🍉 🖤 🍉 🖤 🍉</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MUSIC -->
+    <div class="tab-pane" id="pageMusic">
+      <div class="page-music">
+        <div class="music-header">
+          <p>Наша песня</p>
+          <h2>Музыка вечера 🎵</h2>
+        </div>
+
+        <div class="vinyl-area">
+          <div class="vinyl" id="vinyl">
+            <div class="vgroove">
+              <div class="vg" style="inset:16px"></div>
+              <div class="vg" style="inset:30px"></div>
+              <div class="vg" style="inset:44px"></div>
+              <div class="vg" style="inset:58px"></div>
+              <div class="vg" style="inset:72px"></div>
+              <div class="vg" style="inset:86px"></div>
+            </div>
+            <div class="vcenter">🍉</div>
+          </div>
+          <button class="pfab" id="pfab" onclick="toggleMusic()">▶</button>
+        </div>
+
+        <div class="song-card">
+          <div class="song-title">Watermelon Sugar</div>
+          <div class="song-art">Harry Styles</div>
+          <div class="eq off" id="eq">
+            <div class="eq-b"></div><div class="eq-b"></div><div class="eq-b"></div>
+            <div class="eq-b"></div><div class="eq-b"></div><div class="eq-b"></div>
+            <div class="eq-b"></div>
+          </div>
+        </div>
+
+        <div class="music-msg">
+          🎵 Watermelon Sugar — идеально<br>для нашего арбузного свидания 🍉
+        </div>
+
+        <a class="yt-btn" href="https://youtu.be/BcqxLCWn-CE?si=0Gn3E9E2VdpaK0PQ" target="_blank">
+          ▶ Слушать на YouTube
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="navbar">
+    <button class="nav-btn active" id="navHome" onclick="go('Home')">
+      <span class="nav-icon">🏠</span><span>Главная</span>
+    </button>
+    <button class="nav-btn" id="navDate" onclick="go('Date')">
+      <span class="nav-icon">📅</span><span>Дата</span>
+    </button>
+    <button class="nav-btn" id="navMusic" onclick="go('Music')">
+      <span class="nav-icon">🎵</span><span>Музыка</span>
+    </button>
+  </nav>
+</div>
+
+<script>
+// === SEED BACKGROUND (watermelon seeds) ===
+const bg = document.getElementById('wmBg');
+for(let i=0;i<28;i++){
+  const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  const w=12+Math.random()*10, h=w*1.7;
+  s.setAttribute('viewBox','0 0 10 16');
+  s.setAttribute('width',w); s.setAttribute('height',h);
+  s.innerHTML='<ellipse cx="5" cy="8" rx="4.2" ry="7" fill="#0d0d0d"/>';
+  s.classList.add('seed-svg');
+  s.style.left=Math.random()*100+'vw';
+  s.style.bottom='-20px';
+  s.style.animationDuration=(12+Math.random()*18)+'s';
+  s.style.animationDelay=(-Math.random()*30)+'s';
+  bg.appendChild(s);
+}
+
+// === TABS ===
+function go(tab){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page'+tab).classList.add('active');
+  document.getElementById('nav'+tab).classList.add('active');
+}
+
+// === ENVELOPE OPEN ===
+function openEnv(){
+  const env=document.getElementById('env3d');
+  if(env.classList.contains('opened'))return;
+  // sound: paper pop
+  try{
+    const ac=new(window.AudioContext||window.webkitAudioContext)();
+    const buf=ac.createBuffer(1,ac.sampleRate*0.35,ac.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.exp(-i/(ac.sampleRate*0.05));
+    const src=ac.createBufferSource(); src.buffer=buf;
+    const f=ac.createBiquadFilter(); f.type='bandpass'; f.frequency.value=1800; f.Q.value=0.8;
+    const g=ac.createGain(); g.gain.value=0.28;
+    src.connect(f); f.connect(g); g.connect(ac.destination); src.start();
+    setTimeout(()=>{
+      const o=ac.createOscillator(),og=ac.createGain();
+      o.frequency.setValueAtTime(700,ac.currentTime);
+      o.frequency.exponentialRampToValueAtTime(180,ac.currentTime+0.18);
+      og.gain.setValueAtTime(0.35,ac.currentTime);
+      og.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.22);
+      o.connect(og); og.connect(ac.destination); o.start(); o.stop(ac.currentTime+0.22);
+    },80);
+  }catch(e){}
+  env.classList.add('opened');
+  setTimeout(()=>{
+    document.getElementById('envSection').style.display='none';
+    const c=document.getElementById('theCard');
+    c.style.display='block';
+  },380);
+}
+
+// === RSVP ===
+function doRsvp(){
+  const b=document.getElementById('rsvpBtn');
+  b.textContent='🎉 Отлично, жду тебя!';
+  b.classList.add('done');
+  spawnConfetti();
+}
+
+function spawnConfetti(){
+  const w=document.getElementById('cfw');
+  w.innerHTML='';
+  const cols=['#c01515','#1a1a1a','#fff','#ff5555','#16a34a','#fbbf24','#f472b6'];
+  for(let i=0;i<80;i++){
+    const c=document.createElement('div');
+    c.className='cfc';
+    const sz=5+Math.random()*8;
+    c.style.cssText=`left:${Math.random()*100}vw;width:${sz}px;height:${sz}px;border-radius:${Math.random()>.45?'50%':'2px'};background:${cols[i%cols.length]};animation-duration:${1.4+Math.random()*2.2}s;animation-delay:${Math.random()*0.8}s`;
+    w.appendChild(c);
+  }
+  setTimeout(()=>w.innerHTML='',5000);
+}
+
+// === COUNTDOWN ===
+function tick(){
+  const now=new Date();
+  let t=new Date(now.getFullYear(),5,11,13,0,0);
+  if(t<now) t=new Date(now.getFullYear()+1,5,11,13,0,0);
+  const diff=t-now;
+  if(diff<=0){['D','H','M','S'].forEach(k=>document.getElementById('cd'+k).textContent='00');return;}
+  document.getElementById('cdD').textContent=String(Math.floor(diff/864e5)).padStart(2,'0');
+  document.getElementById('cdH').textContent=String(Math.floor((diff%864e5)/36e5)).padStart(2,'0');
+  document.getElementById('cdM').textContent=String(Math.floor((diff%36e5)/6e4)).padStart(2,'0');
+  document.getElementById('cdS').textContent=String(Math.floor((diff%6e4)/1e3)).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
+
+// === MUSIC (Watermelon Sugar vibe) ===
+let ac2,gn,playing=false,lt;
+
+function mkCtx(){if(!ac2)ac2=new(window.AudioContext||window.webkitAudioContext)();}
+
+function pn(f,t,d,v=0.22,tp='sine'){
+  const o=ac2.createOscillator(),g=ac2.createGain();
+  o.type=tp; o.frequency.value=f;
+  o.connect(g); g.connect(gn);
+  g.gain.setValueAtTime(0,t);
+  g.gain.linearRampToValueAtTime(v,t+0.04);
+  g.gain.exponentialRampToValueAtTime(0.001,t+d);
+  o.start(t); o.stop(t+d+0.01);
+}
+
+// Watermelon Sugar inspired: G major, groovy
+const mel=[
+  [784,0,.22],[880,0.3,.22],[1047,0.6,.3],[880,1.0,.22],
+  [784,1.3,.22],[740,1.6,.3],[784,2.0,.45],
+  [880,2.6,.22],[1047,2.9,.22],[1175,3.2,.3],[1047,3.6,.22],
+  [880,3.9,.22],[784,4.2,.3],[740,4.6,.45],
+  [659,5.2,.22],[740,5.5,.22],[784,5.8,.3],[880,6.2,.22],
+  [784,6.5,.22],[740,6.8,.3],[659,7.2,.5],
+  [587,7.9,.22],[659,8.2,.22],[740,8.5,.3],[784,8.9,.22],
+  [880,9.2,.22],[1047,9.5,.3],[880,9.9,.55]
+];
+const bs=[
+  [98,0,.7],[98,.75,.7],[110,1.5,.7],[110,2.25,.7],
+  [123,3,.7],[123,3.75,.7],[98,4.5,.7],[98,5.25,.7],
+  [110,6,.7],[110,6.75,.7],[123,7.5,.7],[98,8.25,.7],
+  [110,9,.7],[110,9.75,.55]
+];
+const LOOP=10.5;
+
+function sched(t){
+  if(!playing)return;
+  mel.forEach(([f,o,d])=>{pn(f,t+o,d,.20,'sine');pn(f*2,t+o,d*.4,.05,'triangle');});
+  bs.forEach(([f,o,d])=>pn(f,t+o,d,.15,'sawtooth'));
+  lt=setTimeout(()=>sched(t+LOOP),(t+LOOP-ac2.currentTime-.25)*1000);
+}
+
+function toggleMusic(){
+  mkCtx();
+  if(ac2.state==='suspended')ac2.resume();
+  playing=!playing;
+  const fab=document.getElementById('pfab');
+  const vn=document.getElementById('vinyl');
+  const eq=document.getElementById('eq');
+  if(playing){
+    gn=ac2.createGain(); gn.gain.value=0.6; gn.connect(ac2.destination);
+    fab.textContent='⏸'; vn.classList.add('spin'); eq.classList.remove('off');
+    sched(ac2.currentTime+0.05);
+  } else {
+    clearTimeout(lt);
+    if(gn)gn.gain.linearRampToValueAtTime(0,ac2.currentTime+0.3);
+    fab.textContent='▶'; vn.classList.remove('spin'); eq.classList.add('off');
+  }
+}
+</script>
+</body>
+</html>
